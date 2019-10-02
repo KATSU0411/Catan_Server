@@ -24,3 +24,5 @@
 
 /vendor/
 /config/database.yml
+
+/tags
