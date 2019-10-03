@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_02_114303) do
+ActiveRecord::Schema.define(version: 2019_10_03_101346) do
+
+  create_table "user_sessions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "access_token", null: false
+    t.bigint "user_id", null: false
+    t.boolean "active", null: false
+    t.datetime "expires_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_sessions_on_user_id"
+  end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -20,4 +30,5 @@ ActiveRecord::Schema.define(version: 2019_10_02_114303) do
     t.index ["name"], name: "index_users_on_name", unique: true
   end
 
+  add_foreign_key "user_sessions", "users"
 end
