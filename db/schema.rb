@@ -10,15 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_03_101346) do
+ActiveRecord::Schema.define(version: 2019_10_04_015825) do
 
   create_table "user_sessions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "access_token", null: false
     t.bigint "user_id", null: false
-    t.boolean "active", null: false
+    t.boolean "active", default: false, null: false
     t.datetime "expires_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["access_token"], name: "index_user_sessions_on_access_token", unique: true
     t.index ["user_id"], name: "index_user_sessions_on_user_id"
   end
 

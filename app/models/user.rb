@@ -19,7 +19,7 @@ class User < ApplicationRecord
   # has_one :player_entry
   # has_one :spectator_entry
 
-  # has_many :user_sessions
+  has_many :user_sessions
 
   # with_options json_schema: { resource: 'user' } do
   validates :name, presence: true, uniqueness: true
@@ -32,14 +32,14 @@ class User < ApplicationRecord
   # def entered?
   #   player_entry.present? || spectator_entry.present?
   # end
-  #
-  # class << self
-  #   def login(params)
-  #     user = User.find_by(name: params[:name])
-  #     return nil unless user
-  #     return nil unless user.authenticate(params[:password])
-  #
-  #     user
-  #   end
-  # end
+
+  class << self
+    def login(params)
+      user = User.find_by(name: params[:name])
+      return nil unless user
+      return nil unless user.authenticate(params[:password])
+
+      user
+    end
+  end
 end
