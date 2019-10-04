@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_04_092854) do
+ActiveRecord::Schema.define(version: 2019_10_04_094338) do
 
   create_table "player_entries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "room_id", null: false
@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 2019_10_04_092854) do
 
   create_table "rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "status", default: 0, null: false
-    t.integer "users", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
