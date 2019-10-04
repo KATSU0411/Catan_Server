@@ -1,0 +1,2 @@
+class PlayerEntry < ApplicationRecord
+end
