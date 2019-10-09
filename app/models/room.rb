@@ -15,11 +15,11 @@ class Room < ApplicationRecord
   end
 
   def enter_as_player!(user)
-    entryies = PlayerEntry.find_by(room: self, user: nil)
-    if entryies.size < PLAYER_ENTRY_COUNT
-      entry = PlayerEntry.new
-      entry.user = user
-      entry.save!
-    end
+    entryies = PlayerEntry.find_by(room: self)
+    raise "FullHouseError" if entryies.size >= PLAYER_ENTRY_COUNT
+    entry = PlayerEntry.new
+    entry.user = user
+    entry.room = self
+    entry.save!
   end
 end
