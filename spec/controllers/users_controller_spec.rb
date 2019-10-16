@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
@@ -25,14 +27,13 @@ RSpec.describe UsersController, type: :controller do
     # end
 
     context 'post create' do
-
       it 'return 201 status correct parameters' do
         resp = post :create, params: @user
         expect(resp).to have_http_status(:created)
       end
 
       it 'return 400 status bad parameters' do
-        @user[:name] = ""
+        @user[:name] = ''
         resp = post :create, params: @user
         expect(resp).to have_http_status(:bad_request)
       end

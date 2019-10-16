@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserSession < ApplicationRecord
   AVAILABLE_TIME = 1.hour
 
@@ -9,7 +11,6 @@ class UserSession < ApplicationRecord
 
   validates :user_id, presence: true
   validates :active, inclusion: { in: [true, false] }
-
 
   def activate
     self.active = true
@@ -42,5 +43,4 @@ class UserSession < ApplicationRecord
     save!
   end
   alias update_expiration! set_expiration!
-
 end

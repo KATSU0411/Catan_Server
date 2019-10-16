@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PlayerEntrySerializer < ActiveModel::Serializer
   attributes :player_entry_id, :room_id, :user_id
 

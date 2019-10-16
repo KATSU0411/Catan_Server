@@ -1,5 +1,6 @@
-class RoomsController < ApplicationController
+# frozen_string_literal: true
 
+class RoomsController < ApplicationController
   def index
     rooms = Room.where.not(status: :finished).includes(player_entries: [:user])
 
@@ -20,6 +21,4 @@ class RoomsController < ApplicationController
 
     render json: player_entry, status: :created
   end
-
-
 end

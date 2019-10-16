@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreatePlayerEntries < ActiveRecord::Migration[5.2]
   def change
     create_table :player_entries do |t|
@@ -6,6 +8,6 @@ class CreatePlayerEntries < ActiveRecord::Migration[5.2]
       t.timestamps
     end
 
-    add_index :player_entries, [:room_id, :user_id], unique: true
+    add_index :player_entries, %i[room_id user_id], unique: true
   end
 end

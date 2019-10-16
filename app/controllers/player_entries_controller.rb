@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PlayerEntriesController < ApplicationController
   before_action :set_room, only: [:create]
 
@@ -7,7 +9,7 @@ class PlayerEntriesController < ApplicationController
     # GameStarter.new(@room).start! if @room.ready?
 
     render json: player_entry, status: :created
-  # rescue ActiveRecord::StaleObjectError, Errors::FullHouseError
+    # rescue ActiveRecord::StaleObjectError, Errors::FullHouseError
     # render_error FullHouseError.new("room#{params[:id]} was full house")
   end
 

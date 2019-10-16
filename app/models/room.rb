@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 class Room < ApplicationRecord
   PLAYER_ENTRY_COUNT = 4
-
 
   enum status: { waiting: 0, playing: 1, finished: 2 }
 
@@ -16,7 +17,8 @@ class Room < ApplicationRecord
 
   def enter_as_player!(user)
     entryies = PlayerEntry.find_by(room: self)
-    raise "FullHouseError" if entryies.size >= PLAYER_ENTRY_COUNT
+    raise 'FullHouseError' if entryies.size >= PLAYER_ENTRY_COUNT
+
     entry = PlayerEntry.new
     entry.user = user
     entry.room = self

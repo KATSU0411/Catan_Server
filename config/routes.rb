@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   scope :api, format: :json, shallow: true do
-    resources :user_sessions, only: [:create, :destroy]
-    resources :users, only: [:show, :create]
-    resources :rooms, only: [:index, :show, :create]
-    resources :player_entries, only: [:destroy, :create]
+    resources :user_sessions, only: %i[create destroy]
+    resources :users, only: %i[show create]
+    resources :rooms, only: %i[index show create]
+    resources :player_entries, only: %i[destroy create]
   end
 end
