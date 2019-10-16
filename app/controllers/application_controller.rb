@@ -3,6 +3,8 @@ class ApplicationController < ActionController::API
 
   include ActionController::HttpAuthentication::Token::ControllerMethods
   include ActionController::Serialization
+  include Errors
+  include Rescueable
 
   def current_user
     @current_user ||= current_session.try(:user)
@@ -13,9 +15,9 @@ class ApplicationController < ActionController::API
   end
 
   def authenticate!
-    # return render_error UnAuthorizedError.new unless current_session
-    # return render_error SessionExpiredError.new if current_session.expired?
-    #
-    # current_session.update_expiration!
+    return render_error UnAuthorizedError.new unless current_session
+    return render_error SessionExpiredError.new if current_session.expired?
+
+    current_session.update_expiration!
   end
 end
