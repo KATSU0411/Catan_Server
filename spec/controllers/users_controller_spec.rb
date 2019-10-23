@@ -1,30 +1,21 @@
 require 'rails_helper'
-require 'api_helper'
 
 RSpec.describe UsersController, type: :controller do
-
   before :each do
     @user = FactoryBot.attributes_for(:user)
   end
 
   describe 'UsersController validation' do
 
-    # context 'get show' do
-    #   include_context 'login'
-    #   it 'return 200 status' do
-    #     authenticate(request)
-    #     resp = get :show
-    #     expect(resp).to have_http_status(:ok)
-    #   end
-    #
-    #   it 'return 200 status' do
-    #     authenticate(request)
-    #     resp = get :show, params:{
-    #       id: User.first.id,
-    #     }
-    #     expect(resp).to have_http_status(:ok)
-    #   end
-    # end
+    context 'get show' do
+      it 'return 200 status' do
+        login(request)
+        resp = get :show, params:{
+          id: User.first.id,
+        }
+        expect(resp).to have_http_status(:ok)
+      end
+    end
 
     context 'post create' do
       it 'return 201 status correct parameters' do
