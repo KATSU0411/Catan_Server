@@ -27,12 +27,10 @@ class UserSessionsController < ApplicationController
 
     if user
       user_session = UserSession.new(user: user)
-      p user_session.inspect
       user_session.save
       render json: user_session, status: :created
     else
-      # render_error RecordNotFound.new(user)
-      nil
+      render json: nil, status: :bad_request
     end
   end
 

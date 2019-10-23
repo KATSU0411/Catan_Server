@@ -1,24 +1,24 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
+require 'api_helper'
 
 RSpec.describe UsersController, type: :controller do
+
   before :each do
-    request.headers['CONTENT_TYPE'] = 'application/json'
     @user = FactoryBot.attributes_for(:user)
   end
 
   describe 'UsersController validation' do
-    subject { post :create, params: params }
 
     # context 'get show' do
-    #
+    #   include_context 'login'
     #   it 'return 200 status' do
+    #     authenticate(request)
     #     resp = get :show
     #     expect(resp).to have_http_status(:ok)
     #   end
     #
     #   it 'return 200 status' do
+    #     authenticate(request)
     #     resp = get :show, params:{
     #       id: User.first.id,
     #     }
