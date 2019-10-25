@@ -8,6 +8,13 @@ class ApplicationController < ActionController::API
   include Errors
   include Rescueable
 
+  def render_error(exception)
+    render(
+      json: { id: exception.id, message: exception.message },
+      status: exception.status
+    )
+  end
+
   def current_user
     @current_user ||= current_session.try(:user)
   end

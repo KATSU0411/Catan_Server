@@ -13,12 +13,11 @@ class RoomsController < ApplicationController
   end
 
   def create
-    # room = RoomFactory.new(current_user).create!
     room = Room.create!(status: :waiting)
 
     room.player_entries.create!(user: current_user)
     player_entry = PlayerEntry.find_by(room: room, user: current_user)
 
-    render json: player_entry, status: :created
+    render json: player_entry, status: :ok
   end
 end
