@@ -18,9 +18,9 @@ RSpec.describe UsersController, type: :controller do
     end
 
     context 'post create' do
-      it 'return 201 status correct parameters' do
+      it 'return 200 status correct parameters' do
         resp = post :create, params: @user
-        expect(resp).to have_http_status(:created)
+        expect(resp).to have_http_status(:ok)
       end
 
       it 'return 400 status bad parameters' do

@@ -20,15 +20,13 @@
 class UserSessionsController < ApplicationController
   skip_before_action :authenticate!, only: [:create]
 
-  # before_action only: [:destroy] { check_authority!(:destroy, current_session) }
-
   def create
     user = User.login(user_params)
 
     if user
       user_session = UserSession.new(user: user)
       user_session.save
-      render json: user_session, status: :created
+      render json: user_session, status: :ok
     else
       render json: nil, status: :bad_request
     end
@@ -37,13 +35,12 @@ class UserSessionsController < ApplicationController
   def destroy
     user = current_session.user
     current_session.delete
-    render json: user
+    render json: user, status: :ok
   end
 
   private
 
   def user_params
-    # json_params.permit(:name, :password)
     params.permit(:name, :password)
   end
 end
