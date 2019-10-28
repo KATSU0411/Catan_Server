@@ -37,6 +37,24 @@ RSpec.describe RoomsController, type: :controller do
     end
 
     context 'post create' do
+      it 'return 401 status without login' do
+        resp = post :create
+        expect(resp).to have_http_status(:unauthorized)
+      end
+
+      it 'return 400 status with invalidation' do
+        login(request)
+        resp = post :create
+        expect(resp).to have_http_status(:bad_request)
+      end
+
+      it 'return 200 status with correct param' do
+        login(request)
+        resp = post :create, params: {
+          name: 'Test1'
+        }
+        expect(resp).to have_http_status(:ok)
+      end
     end
   end
 end

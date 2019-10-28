@@ -5,11 +5,8 @@ class Room < ApplicationRecord
 
   enum status: { waiting: 0, playing: 1, finished: 2 }
 
+  validates :name, presence: true
   has_many :player_entries, dependent: :delete_all
-
-  def owner_name
-    player_entries.find { |pe| pe.index == 1 }&.user_name
-  end
 
   def ready?
     player_entries.size == PLAYER_ENTRY_COUNT

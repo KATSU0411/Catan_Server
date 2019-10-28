@@ -14,3 +14,11 @@
     password: 'aaaaaaaa'
   )
 end
+
+Room.create(
+  name: 'Test'
+)
+PlayerEntry.create(
+  room_id: Room.first.id,
+  user_id: User.first.id,
+)
